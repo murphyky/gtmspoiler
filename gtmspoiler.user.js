@@ -6,7 +6,7 @@
 // @author       You
 // @match        https://forum.gamestm.co.uk/*
 // @grant        none
-// @license     GNU
+// @license         GPLv3 - http://www.gnu.org/licenses/gpl-3.0.txt
 // ==/UserScript==
 
 (function() {
