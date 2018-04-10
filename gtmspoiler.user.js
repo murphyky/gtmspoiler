@@ -6,6 +6,7 @@
 // @author       You
 // @match        https://forum.gamestm.co.uk/*
 // @grant        none
+// @license     GNU
 // ==/UserScript==
 
 (function() {
