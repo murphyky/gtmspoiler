@@ -6,7 +6,8 @@
 // @author       You
 // @match        https://forum.gamestm.co.uk/*
 // @grant        none
-// @license      GPLv3 - http://www.gnu.org/licenses/gpl-3.0.txt
+// @license CC-BY-NC-SA-4.0; https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+// @license GPL-3.0+; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author          Kyle Murphy
 // @namespace       http://github.com/murphyky
 // @downloadURL     https://github.com/murphyky/gtmspoiler/gtmspoiler.user.js
