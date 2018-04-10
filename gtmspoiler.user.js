@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.21
 // @description  Don't spoil Nier >:(
 // @author       You
-// @match        https://forum.gamestm.co.uk/*
+// @match        https://forum.gamestm.co.uk/posting.php?*
 // @grant        none
 // @license CC-BY-NC-SA-4.0; https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
 // @license GPL-3.0+; http://www.gnu.org/licenses/gpl-3.0.txt
