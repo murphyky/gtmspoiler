@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.41
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -9,16 +9,12 @@
 // @license CC-BY-NC-SA-4.0; https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
 // @license GPL-3.0+; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author          Kyle Murphy
-// @namespace       https://github.com/murphyky
-// @updateURL       https://github.com/murphyky/gtmspoiler/blob/master/gtmspoiler.user.js
-// @downloadURL     https://github.com/murphyky/gtmspoiler/blob/master/gtmspoiler.user.js
-
 
 // ==/UserScript==
 
 (function() {
     'use strict';
-
+    
     var elem = document.createElement('input');
     elem.id = "spoilerButton";
     elem.className = "button1";
@@ -73,7 +69,7 @@
         var spoilerText = getSelectionText();
 
         if (spoilerText) {
-
+            console.log("Spoilerfy this text :", spoilerText);
             if (o.value.indexOf(spoilerText) > -1) {
                 o.value = slice(o.value, (o.value.indexOf(spoilerText)), 0, ("[color=" + hideText) + "]");
                 o.value = slice(o.value, (o.value.indexOf(spoilerText) + spoilerText.length), 0, '[/color]');
