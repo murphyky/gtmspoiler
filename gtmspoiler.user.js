@@ -10,6 +10,7 @@
 // @license GPL-3.0+; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author          Kyle Murphy
 // @namespace       http://github.com/murphyky
+// @updateUrl       https://github.com/murphyky/gtmspoiler/gtmspoiler.user.js
 // @downloadURL     https://github.com/murphyky/gtmspoiler/gtmspoiler.user.js
 
 
