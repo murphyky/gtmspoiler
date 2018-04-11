@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.21
+// @version      0.22
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
