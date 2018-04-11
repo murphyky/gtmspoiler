@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.43
+// @version      0.44
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -9,6 +9,9 @@
 // @license CC-BY-NC-SA-4.0; https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
 // @license GPL-3.0+; http://www.gnu.org/licenses/gpl-3.0.txt
 // @author          Kyle Murphy
+// @downloadURL https://github.com/murphyky/gtmspoiler/raw/master/gtmspoiler.user.js
+// @updateURL https://github.com/murphyky/gtmspoiler/raw/master/gtmspoiler.user.js
+
 
 // ==/UserScript==
 
