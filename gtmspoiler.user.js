@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.42
+// @version      0.43
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -15,8 +15,6 @@
 (function() {
     'use strict';
         
-    console.log("initiating spoiler script")
-
     var elem = document.createElement('input');
     elem.id = "spoilerButton";
     elem.className = "button1";
