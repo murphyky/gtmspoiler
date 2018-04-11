@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.45
+// @version      0.46
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -78,13 +78,6 @@
                 o.value = slice(o.value, (o.value.indexOf(spoilerText) + spoilerText.length), 0, '[/color]');
             }
 
-        } else {
-
-            if (o.value.indexOf("[SPOILER]") > -1) {
-                o.value = slice(o.value, (o.value.indexOf("[SPOILER]") + "[SPOILER]".length), 0, "[color=#DCDFE4]");
-                o.value = slice(o.value, o.value.indexOf("[/SPOILER]"), 0, "[/color]");
-            }
-
-        }
+        } 
     }
 })();
