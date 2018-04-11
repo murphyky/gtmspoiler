@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.22
+// @version      0.3
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -21,13 +21,14 @@
 
     var elem = document.createElement('input');
     elem.id = "spoilerButton";
-    elem.class = "button2";
+    elem.className = "button1";
     elem.onclick = spoiler;
-    elem.value = "SPOILER";
+    elem.value = "Spoiler";
     elem.type = "submit";
 
     var spoilerBlockColourInput = document.createElement('select');
     spoilerBlockColourInput.id = "spoilerSelect";
+    spoilerBlockColourInput.style["margin-left"] = "10px";
     var optionOne = document.createElement("option");
     optionOne.value = '#DCDFE4';
     optionOne.text = "Grey";
