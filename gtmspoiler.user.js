@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.47
+// @version      0.48
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -58,10 +58,17 @@
 
     function getSelectionText() {
         var text = "";
-        if (window.getSelection) {
-            text = window.getSelection().toString();
-        } else if (document.selection && document.selection.type != "Control") {
-            text = document.selection.createRange().text;
+
+        if (navigator.userAgent.indexOf("Chrome") !== -1){ 
+            if (window.getSelection) {
+                text = window.getSelection().toString();
+            } else if (document.selection && document.selection.type != "Control") {
+                text = document.selection.createRange().text;
+            }
+        } else {
+            var start = textElement.selectionStart;
+            var finish = textElement.selectionEnd;
+            text = textElement.value.substring(start, finish);
         }
         return text;
     }
