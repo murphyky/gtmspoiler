@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.51
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -37,14 +37,13 @@
     var optionTwo = document.createElement("option");
     optionTwo.value = '#F5F7FA';
     optionTwo.text = "White";
-    spoilerBlockColourInput.appendChild(optionOne);
-    spoilerBlockColourInput.appendChild(optionTwo);
 
     var optionThree = document.createElement("option");
     optionThree.value = '#EAE9DC';
     optionThree.text = "Yellow (for quoted posts)";
     spoilerBlockColourInput.appendChild(optionOne);
     spoilerBlockColourInput.appendChild(optionTwo);
+    spoilerBlockColourInput.appendChild(optionThree);
 
 
     var buttonElements = document.getElementsByClassName("submit-buttons");
