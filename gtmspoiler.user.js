@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.51
+// @version      0.52
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -87,8 +87,8 @@
         if (spoilerText) {
             console.log("Spoilerify this text :", spoilerText);
             if (o.value.indexOf(spoilerText) > -1) {
-                o.value = slice(o.value, (o.value.indexOf(spoilerText)), 0, ("[color=" + hideText) + "]");
-                o.value = slice(o.value, (o.value.indexOf(spoilerText) + spoilerText.length), 0, '[/color]');
+                o.value = slice(o.value, (o.value.indexOf(spoilerText)), 0, ("🤐[color=" + hideText) + "]");
+                o.value = slice(o.value, (o.value.indexOf(spoilerText) + spoilerText.length), 0, '[/color]🤐');
             }
 
         } 
