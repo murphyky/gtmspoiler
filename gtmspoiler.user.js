@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.53
+// @version      0.54
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -17,6 +17,10 @@
 
 (function() {
     'use strict';
+
+    var postingHeader = document.getElementById("postingbox");
+    postingHeader = postingHeader.getElementsByTagName("h3");
+    postingHeader = postingHeader[0];
         
     var elem = document.createElement('input');
     elem.id = "spoilerButton";
@@ -86,6 +90,10 @@
         return text;
     }
 
+    function displayProgress() {
+
+    }
+
     function spoiler(e) {
         e.preventDefault();
 
@@ -104,10 +112,17 @@
 
         if (spoilerBlockColourInput.value === "AUTO") {
 
+            postingHeader.innerText = "Fetching correct spoiler colour, may take a few seconds......";
+
             //infer the hideText value from the current page count automatically
             getResource(getLastPage(), function(res) {
                 getLastPagePostCount(res);
                 applySpoilerFilter();
+
+                postingHeader.innerText = "Updated Post!!!!";
+                setTimeout(function(){
+                    postingHeader.innerText = "Post a reply";
+                }, 2000);
             });
         } else {
             applySpoilerFilter();
