@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spoiler GTM Post
 // @namespace    http://tampermonkey.net/
-// @version      0.52
+// @version      0.53
 // @description  Don't spoil Nier >:(
 // @author       You
 // @match        https://forum.gamestm.co.uk/posting.php?*
@@ -28,22 +28,29 @@
     var spoilerBlockColourInput = document.createElement('select');
     spoilerBlockColourInput.id = "spoilerSelect";
     spoilerBlockColourInput.style["margin-left"] = "10px";
+
     var optionOne = document.createElement("option");
-    optionOne.value = '#DCDFE4';
-    optionOne.text = "Grey";
+    optionOne.value = 'AUTO';
+    optionOne.text = "Auto";
+
+
+    var optionTwo = document.createElement("option");
+    optionTwo.value = '#DCDFE4';
+    optionTwo.text = "Grey";
 
     var textElement = document.getElementById("message");
 
-    var optionTwo = document.createElement("option");
-    optionTwo.value = '#F5F7FA';
-    optionTwo.text = "White";
-
     var optionThree = document.createElement("option");
-    optionThree.value = '#EAE9DC';
-    optionThree.text = "Yellow (for quoted posts)";
+    optionThree.value = '#F5F7FA';
+    optionThree.text = "White";
+
+    var optionFour = document.createElement("option");
+    optionFour.value = '#EAE9DC';
+    optionFour.text = "Yellow (for quoted posts)";
     spoilerBlockColourInput.appendChild(optionOne);
     spoilerBlockColourInput.appendChild(optionTwo);
     spoilerBlockColourInput.appendChild(optionThree);
+    spoilerBlockColourInput.appendChild(optionFour);
 
 
     var buttonElements = document.getElementsByClassName("submit-buttons");
@@ -81,16 +88,67 @@
 
     function spoiler(e) {
         e.preventDefault();
-        var o = document.getElementById("message");
-        var spoilerText = getSelectionText();
 
-        if (spoilerText) {
-            console.log("Spoilerify this text :", spoilerText);
-            if (o.value.indexOf(spoilerText) > -1) {
-                o.value = slice(o.value, (o.value.indexOf(spoilerText)), 0, ("🤐[color=" + hideText) + "]");
-                o.value = slice(o.value, (o.value.indexOf(spoilerText) + spoilerText.length), 0, '[/color]🤐');
-            }
+        function applySpoilerFilter() {
+            var o = document.getElementById("message");
+            var spoilerText = getSelectionText();
 
-        } 
+            if (spoilerText) {
+                console.log("Spoilerify this text :", spoilerText);
+                if (o.value.indexOf(spoilerText) > -1) {
+                    o.value = slice(o.value, (o.value.indexOf(spoilerText)), 0, ("🤐[color=" + hideText) + "]");
+                    o.value = slice(o.value, (o.value.indexOf(spoilerText) + spoilerText.length), 0, '[/color]🤐');
+                }
+            }            
+        }
+
+        if (spoilerBlockColourInput.value === "AUTO") {
+
+            //infer the hideText value from the current page count automatically
+            getResource(getLastPage(), function(res) {
+                getLastPagePostCount(res);
+                applySpoilerFilter();
+            });
+        } else {
+            applySpoilerFilter();
+        }
     }
+
+    function getResource(res, cb) {
+        var xobj = new XMLHttpRequest();
+        xobj.open("GET", res, true);
+        xobj.onreadystatechange = function() {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                var result = xobj.responseText; 
+                cb(result);
+            }            
+        };
+        xobj.send(null);
+    }
+
+    function getLastPage() {
+        var postLinks = document.getElementsByClassName("author");
+        var lastPost = postLinks[0];
+        var lastPostLink = lastPost.getElementsByTagName("a");
+        if (lastPostLink)
+            lastPostLink = lastPostLink[0];
+        return lastPostLink.href;
+    }
+
+    //enhancement
+    //count the posts on the last post page
+    //parse HTML DOC
+    function getLastPagePostCount(lastPageHTML) {
+
+        var posts = lastPageHTML.match(/(postbody)/g);
+        var count = posts.length || 0;
+        //if even
+        if (((count % 2) === 0) || count === 15) {
+            hideText = "#DCDFE4";
+        } else {
+            hideText = "#F5F7FA";
+        }
+    }
+
 })();
